@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import ProgressBar from 'progressbar.js';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const splashTextRef = useRef(null);
   const [images, setImages] = useState({});
   const [loadingProgress, setLoadingProgress] = useState(0);
 
@@ -16,33 +14,6 @@ function App() {
     let loadedImages = 0;
     const imagesObject = {};
 
-    const bar = new ProgressBar.Line(splashTextRef.current, {
-      easing: 'easeInOut',
-      duration: 1000,
-      strokeWidth: 0.2,
-      color: '#555',
-      trailWidth: 0.2,
-      trailColor: '#bbb',
-      text: {
-        style: {
-          position: 'absolute',
-          left: '50%',
-          top: '40px',
-          padding: '0',
-          margin: '0',
-          transform: 'translateX(-50%)',
-          fontSize: '1rem',
-          color: '#555',
-          display: 'inline-block',
-          whiteSpace: 'nowrap',
-        },
-        autoStyleContainer: false,
-      },
-      step: (state, bar) => {
-        bar.setText(Math.round(bar.value() * 100) + ' %');
-      },
-    });
-
     imageKeys.forEach((key) => {
       const img = new Image();
       img.src = req(key);
@@ -53,88 +24,80 @@ function App() {
         setImages({ ...imagesObject });
 
         setLoadingProgress(Math.round((loadedImages / totalImages) * 100));
-        bar.set(loadedImages / totalImages);
 
         if (loadedImages === totalImages) {
-          bar.animate(1.0, () => {
-            setTimeout(() => {
-              setIsLoading(false);
-            }, 500);
-          });
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500);
         }
       };
     });
   }, []);
 
   return (
-    <div className="bg-gray-200 font-sans">
-      {isLoading && (
-        <div
-          id="loader"
-          className="fixed top-0 left-0 w-full h-full bg-gray-100 flex justify-center items-center flex-col z-50"
-        >
-          <div ref={splashTextRef} className="progress-container text-xl text-gray-600 mb-4" />
+    <div className="bg-gray-100 font-sans min-h-screen">
+      {isLoading ? (
+        <div className="fixed inset-0 bg-white flex justify-center items-center">
+          <div className="text-2xl text-gray-600">Loading... {loadingProgress}%</div>
         </div>
-      )}
+      ) : (
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+            <div className="p-8">
+              <img
+                className="w-32 h-32 rounded-full mx-auto mb-6"
+                src={images.icon}
+                alt="プロフィール写真"
+              />
+              <h1 className="text-3xl font-bold text-center mb-6">わさび</h1>
 
-      {!isLoading && (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="header text-center py-8">
-            <img
-              className="w-36 h-36 rounded-full mx-auto"
-              src={images.icon}
-              alt="プロフィール写真"
-            />
-            <h1 className="text-4xl mt-2">わさび</h1>
-
-            <ul className="flex justify-center space-x-4 mt-4">
-              <li>
+              <div className="flex justify-center space-x-4 mb-8">
                 <a
-                  className="inline-flex items-center px-6 py-3 bg-white rounded-full cursor-pointer transition-colors duration-300 hover:bg-black-500 hover:text-white exampleClass"
+                  className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full transition-colors duration-300 hover:bg-gray-200"
                   href="https://twitter.com/melt_wasabi"
                 >
                   <img
-                    className="h-6 w-6 mr-2"
+                    className="h-5 w-5 mr-2"
                     src={images.X}
                     alt="X(Twitter)"
                   />
                   <span>@melt_wasabi</span>
                 </a>
-              </li>
-              <li>
                 <a
-                  className="inline-flex items-center px-6 py-3 bg-white rounded-full cursor-pointer transition-colors duration-300 hover:bg-black-500 hover:text-white exampleClass"
+                  className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full transition-colors duration-300 hover:bg-gray-200"
                   href="https://www.instagram.com/melt_wasabi"
                 >
                   <img
-                    className="h-6 w-6 mr-2"
+                    className="h-5 w-5 mr-2"
                     src={images.Instagram}
                     alt="Instagram"
                   />
                   <span>@melt_wasabi</span>
                 </a>
-              </li>
-            </ul>
+              </div>
 
-            <div className="mt-4 bg-white p-6 rounded shadow">
-              <p className="text-lg leading-relaxed text-left">
-                こんにちはー！！元ガジェ界のわさびです！<br />
-                このページは自己紹介ページです！！
-              </p>
-              <br />
-              <p className="text-lg leading-relaxed text-left">【趣味】</p>
-              <ul className="list-disc list-inside text-left">
-                <li>電車で大回り乗車をすること</li>
-                <li>寝ること</li>
-              </ul>
-            </div>
+              <div className="space-y-6">
+                <p className="text-gray-700 leading-relaxed">
+                  こんにちはー！！元ガジェ界のわさびです！<br />
+                  このページは自己紹介ページです！！
+                </p>
 
-            <div className="mt-4 bg-white p-6 rounded shadow">
-              <p className="text-lg leading-relaxed text-left">【所有デバイス】</p>
-              <ul className="list-disc list-inside text-left">
-                <li>Galaxy S23 Ultra (au運用)</li>
-                <li>iPhone 15 Pro (Rakuten運用)</li>
-              </ul>
+                <div>
+                  <h2 className="text-xl font-semibold mb-2">趣味</h2>
+                  <ul className="list-disc list-inside text-gray-700">
+                    <li>電車で大回り乗車をすること</li>
+                    <li>寝ること</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h2 className="text-xl font-semibold mb-2">所有デバイス</h2>
+                  <ul className="list-disc list-inside text-gray-700">
+                    <li>Galaxy S23 Ultra (au運用)</li>
+                    <li>iPhone 15 Pro (Rakuten運用)</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>

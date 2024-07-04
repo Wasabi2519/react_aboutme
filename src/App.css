@@ -2,69 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-/*========= LoadingのためのCSS ===============*/
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
 
-/* Loading背景画面設定　*/
-#splash {
+/* Links */
+a {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #1f2937;
+}
+
+/* Loading Screen */
+.loading-screen {
   position: fixed;
   z-index: 999;
   width: 100%;
   height: 100%;
-  background: #333;
-  text-align: center;
-  color: #fff;
-}
-
-/* Loadingバー中央配置　*/
-#splash_text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 999;
-  width: 100%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-}
-
-/* IE11対策用バーの線の高さ */
-#splash_text svg {
-  height: 2px;
-}
-
-/*========= レイアウトのためのCSS ===============*/
-#container {
-  width: 100%;
-  height: 100vh;
-  background: #ccc;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
-a {
-  color: #333;
+.loading-text {
+  font-size: 1.25rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: #4b5563;
 }
 
-a:hover {
-  text-decoration: none;
+/* Main Container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.text-left-align {
-  text-align: left;
+/* Profile Card */
+.profile-card {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.progress-container {
-  position: relative;
-  width: 80%;
+/* Profile Image */
+.profile-image {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-#loader .progressbar-text {
-  position: absolute;
-  left: 50%;
-  top: 40px;
-  /* バーの下にテキストを表示 */
-  transform: translateX(-50%);
-  font-size: 1rem;
-  color: #555;
+/* Section Titles */
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+/* List Styles */
+ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
 }
