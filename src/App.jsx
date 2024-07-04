@@ -58,9 +58,9 @@ function App() {
               />
               <h1 className="text-3xl font-bold text-center mb-6">わさび</h1>
 
-              <div className="flex justify-center space-x-4 mb-8">
+              <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
                 <a
-                  className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full transition-colors duration-300 hover:bg-gray-200"
+                  className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full transition-colors duration-300 hover:bg-gray-200 w-full sm:w-auto justify-center"
                   href="https://twitter.com/melt_wasabi"
                 >
                   <img
@@ -71,7 +71,7 @@ function App() {
                   <span>@melt_wasabi</span>
                 </a>
                 <a
-                  className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full transition-colors duration-300 hover:bg-gray-200"
+                  className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full transition-colors duration-300 hover:bg-gray-200 w-full sm:w-auto justify-center"
                   href="https://www.instagram.com/melt_wasabi"
                 >
                   <img
