@@ -37,8 +37,15 @@ function App() {
   return (
     <div className="bg-gray-100 font-sans min-h-screen">
       {isLoading ? (
-        <div className="fixed inset-0 bg-white flex justify-center items-center">
-          <div className="text-2xl text-gray-600">Loading... {loadingProgress}%</div>
+        <div className="fixed inset-0 bg-white flex flex-col justify-center items-center">
+          <div className="text-2xl text-gray-600 mb-4">Loading...</div>
+          <div className="w-64 bg-gray-200 rounded-full h-2.5">
+            <div
+              className="bg-gray-600 h-2.5 rounded-full"
+              style={{ width: `${loadingProgress}%` }}
+            ></div>
+          </div>
+          <div className="text-gray-500 mt-2">{loadingProgress}%</div>
         </div>
       ) : (
         <div className="container mx-auto px-4 py-12">
