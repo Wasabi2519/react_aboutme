@@ -1,5 +1,5 @@
 import React from 'react';
-import { Twitter, Instagram, Briefcase, Book, Mail } from 'lucide-react';
+import { Twitter, Instagram, Briefcase } from 'lucide-react';
 
 const SelfIntroductionSite = () => {
   return (
@@ -11,7 +11,7 @@ const SelfIntroductionSite = () => {
           className="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg hover:scale-105 transition-transform duration-300"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "https://via.placeholder.com/128?text=山田太郎";
+            e.target.src = "https://via.placeholder.com/128?text=わさび";
           }}
         />
         <h1 className="text-3xl font-bold mb-2 animate-fade-in">わさび</h1>
@@ -26,7 +26,7 @@ const SelfIntroductionSite = () => {
           <SocialIcon href="mailto:yamada@example.com" icon={<Mail size={24} />} label="Contact" /> */}
         </div>
       </div>
-      <div className="description-container bg-white p-6 rounded-lg shadow-md max-w-2xl w-full animate-fade-in animate-delay-300">
+      <div className="description-container bg-white p-6 rounded-lg shadow-md max-w-2xl w-full animate-fade-in animate-delay-300 mb-8">
         <h2 className="text-2xl font-semibold mb-4">自己紹介</h2>
         <p className="text-gray-700 leading-relaxed">
           こんにちはー！！元ガジェ界のわさびです！<br />
@@ -36,17 +36,14 @@ const SelfIntroductionSite = () => {
           最近はガジェットブームは去りつつ大回り乗車が趣味になりつつあります！！
         </p>
       </div>
-      <br></br>
       <div className="description-container bg-white p-6 rounded-lg shadow-md max-w-2xl w-full animate-fade-in animate-delay-300">
         <h2 className="text-2xl font-semibold mb-4">所有デバイス</h2>
-        <p className="text-gray-700 leading-relaxed">
+        <ul className="text-gray-700 leading-relaxed list-disc pl-5">
           <li>Galaxy S23 Ultra (au運用)</li>
           <li>iPhone 15 Pro (Rakuten運用)</li>
-        </p>
+        </ul>
       </div>
     </div>
-
-
   );
 };
 
